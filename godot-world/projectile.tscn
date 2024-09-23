@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu6flujean85y"]
+
+[ext_resource type="Script" path="res://projectile.gd" id="1_yj44y"]
+[ext_resource type="Texture2D" uid="uid://up3cy2vi5d6w" path="res://art/pngimg.com - cannonball_PNG16.png" id="2_87pov"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bsyeb"]
+radius = 9.0
+height = 18.0
+
+[node name="Projectile" type="Area2D" groups=["projectileGroup"]]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_yj44y")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_bsyeb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["projectileGroup"]]
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("2_87pov")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
