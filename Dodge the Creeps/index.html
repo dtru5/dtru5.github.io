@@ -20,6 +20,7 @@ body {
 
 #canvas {
 	display: block;
+	z-index: 0; /* Ensure canvas is beneath the button */
 }
 
 #canvas:focus {
@@ -75,12 +76,32 @@ body {
 	text-align: center;
 	z-index: 1;
 }
+
+#home-button {
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	background-color: #444;
+	color: white;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+	font-size: 14px;
+	border-radius: 5px;
+	z-index: 1000; /* Ensure button is above everything else */
+}
+
+#home-button:hover {
+	background-color: #555;
+}
 		</style>
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
-<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
-
+		<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
 	</head>
 	<body>
+		<!-- Back to homepage button -->
+		<button id="home-button" onclick="window.location.href='https://dtru5.github.io'">Home</button>
+
 		<canvas id="canvas">
 			Your browser does not support the canvas tag.
 		</canvas>
@@ -196,4 +217,3 @@ const engine = new Engine(GODOT_CONFIG);
 		</script>
 	</body>
 </html>
-
